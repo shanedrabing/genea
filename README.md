@@ -14,7 +14,22 @@ python setup.py install
 
 ## Why Infoboxes?
 
-![docs/infobox_washington.png](docs/infobox_washington.png)
+![docs/infobox_washington.png](docs/infobox_washington.png?style=centerme)
+
+*Modification of infobox as seen on [Wikipedia page for George
+Washington](https://en.wikipedia.org/wiki/George_Washington)*
+
+Infoboxes give us a digest of a particular Wikipedia page, alongside the
+relational information we need to build a tree. In the image above, we can see
+rows of information under the "Personal Details" section; each of these rows
+contain a header (bolded text) and (usually) associated links.
+
+We'll use regular expression patterns to match with these headers, some of
+which provide ancestral relationships ("Parents", in this case), some provide
+descendant relationships ("Children"), and others that could provide extra
+links that we can walk out from ("Relatives").
+
+Let's try this example.
 
 ## Getting Started
 
