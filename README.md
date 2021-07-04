@@ -15,13 +15,15 @@ python setup.py install
 ## Why Infoboxes?
 
 <p align="center">
-  <img src="docs/infobox_washington.png" alt="infobox_washington.png"/>
-  <i>
-    Modification of infobox as seen on
-    <a href="https://en.wikipedia.org/wiki/George_Washington">
-        Wikipedia page for George Washington
-    </a>
-  </i>
+    <img src="docs/infobox_washington.png" alt="infobox_washington.png" />
+</p>
+<p align="center">
+    <i>
+        Modification of infobox as seen on
+        <a href="https://en.wikipedia.org/wiki/George_Washington">
+            Wikipedia page for George Washington
+        </a>
+    </i>
 </p>
 
 Infoboxes give us a digest of a particular Wikipedia page, alongside the
