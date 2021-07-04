@@ -14,6 +14,9 @@ python setup.py install
 
 ## Why Infoboxes?
 
+Infoboxes give us a digest of a particular Wikipedia page, in addition to the
+relational information that we'll need to build a tree. 
+
 <p align="center">
     <img src="docs/infobox_washington.png" alt="infobox_washington.png" />
 </p>
@@ -26,10 +29,9 @@ python setup.py install
     </i>
 </p>
 
-Infoboxes give us a digest of a particular Wikipedia page, in addition to the
-relational information that we'll need to build a tree. In the image above, we
-can see rows of data under the "Personal Details" section; each of these rows
-contain a header (bolded text) and (typically) associated links.
+In the image above, we can see rows of data under the "Personal Details"
+section; each of these rows contain a header (bolded text) and (typically)
+associated links.
 
 We'll use regular expression patterns to match with these headers, some of
 which provide ancestral relationships ("Parents", in this case), some provide
