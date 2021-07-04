@@ -19,24 +19,24 @@ python setup.py install
 </p>
 <p align="center">
     <i>
-        Modification of infobox as seen on
+        Modified infobox as seen on the
         <a href="https://en.wikipedia.org/wiki/George_Washington">
             Wikipedia page for George Washington
         </a>
     </i>
 </p>
 
-Infoboxes give us a digest of a particular Wikipedia page, alongside the
-relational information we need to build a tree. In the image above, we can see
-rows of information under the "Personal Details" section; each of these rows
-contain a header (bolded text) and (usually) associated links.
+Infoboxes give us a digest of a particular Wikipedia page, in addition to the
+relational information that we'll need to build a tree. In the image above, we
+can see rows of data under the "Personal Details" section; each of these rows
+contain a header (bolded text) and (typically) associated links.
 
 We'll use regular expression patterns to match with these headers, some of
 which provide ancestral relationships ("Parents", in this case), some provide
 descendant relationships ("Children"), and others that could provide extra
 links that we can walk out from ("Relatives").
 
-Let's try this example.
+Let's try out the above example.
 
 ## Getting Started
 
