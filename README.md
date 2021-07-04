@@ -14,7 +14,9 @@ python setup.py install
 
 ## Why Infoboxes?
 
-![docs/infobox_washington.png](docs/infobox_washington.png?style=centerme)
+<p align="center">
+  <img src="docs/infobox_washington.png" alt="infobox_washington.png"/>
+</p>
 
 *Modification of infobox as seen on [Wikipedia page for George
 Washington](https://en.wikipedia.org/wiki/George_Washington)*
