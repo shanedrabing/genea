@@ -1,9 +1,15 @@
-import requests
-import bs4
-import re
-import functools
+__author__ = "Shane Drabing"
+__license__ = "MIT"
+__version__ = "0.0.0"
+__email__ = "shane.drabing@gmail.com"
+
 import concurrent.futures
-    
+import functools
+import re
+
+import bs4
+import requests
+
 
 # CONSTANTS
 
