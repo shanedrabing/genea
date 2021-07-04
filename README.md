@@ -16,10 +16,13 @@ python setup.py install
 
 <p align="center">
   <img src="docs/infobox_washington.png" alt="infobox_washington.png"/>
+  <i>
+    Modification of infobox as seen on
+    <a href="https://en.wikipedia.org/wiki/George_Washington">
+        Wikipedia page for George Washington
+    </a>
+  </i>
 </p>
-
-*Modification of infobox as seen on [Wikipedia page for George
-Washington](https://en.wikipedia.org/wiki/George_Washington)*
 
 Infoboxes give us a digest of a particular Wikipedia page, alongside the
 relational information we need to build a tree. In the image above, we can see
