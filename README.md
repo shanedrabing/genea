@@ -12,20 +12,24 @@ cd genea
 python setup.py install
 ```
 
+## Why Infoboxes?
+
+![docs/infobox_washington.png](docs/infobox_washington.png)
+
 ## Getting Started
 
 Run the program with Python.
 
 ```bash
-python genea.py 'George Washington' '^Parent' '^Child'
+python genea.py 'George Washington' '^Parent' '^Child' '^Relative'
 ```
 
 ### Positional arguments
 
-- `term` : Search term. Leads to initial Wikipedia page.
-- `pre` : Optional, regex. If matched, will add ancestor.
-- `post` : Optional, regex. If matched, will add descendant.
-- `extra` : Optional, regex. If matched, will add additional links (no
+- `term` : Search term. Redirects to initial Wikipedia page.
+- `pre` : (optional, regex) If matched, will add ancestor.
+- `post` : (optional, regex) If matched, will add descendant.
+- `extra` : (optional, regex) If matched, will add additional links (no
   relation).
 
 ### Optional arguments
