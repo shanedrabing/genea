@@ -88,7 +88,33 @@ class Node:
         return string
 
 
-# FUNCTIONS
+# FUNCTIONS (GRAPHS)
+
+
+def find_set(v, parent):
+    return v if (v == parent[v]) else find_set(parent[v], parent)
+
+
+def union_set(v1, v2, parent):
+    parent[v1] = v2
+
+
+def are_connected(v1, v2, parent):
+    v1parent = find_set(v1, parent)
+    v2parent = find_set(v2, parent)
+    return (v1parent == v2parent)
+    
+
+def connected_components(v1, v2, parent):
+    v1parent = find_set(v1, parent)
+    v2parent = find_set(v2, parent)
+    if (v1parent == v2parent):
+        return False
+    union_set(v1parent, v2parent, parent)
+    return True
+
+
+# FUNCTIONS (GENEA)
 
 
 def get_resp(url):
@@ -223,20 +249,19 @@ def main(args):
     for dct in data:
         lookup[dct["url"]] = Node(dct)
 
+    keys = {k: k for k in keys}
     for dct in data:
         me = dct["url"]
-
         for parent in dct["relation"]["pre"]:
-            if lookup[me] is lookup[parent]:
-                continue
-            lookup[parent].children[me] = lookup[me]
-            lookup[me].parents[parent] = lookup[parent]
+            # ensure we don't form a cycle
+            if connected_components(parent, me, keys):
+                lookup[parent].children[me] = lookup[me]
+                lookup[me].parents[parent] = lookup[parent]
 
         for child in dct["relation"]["post"]:
-            if lookup[me] is lookup[child]:
-                continue
-            lookup[me].children[child] = lookup[child]
-            lookup[child].parents[me] = lookup[me]
+            if connected_components(me, child, keys):
+                lookup[me].children[child] = lookup[child]
+                lookup[child].parents[me] = lookup[me]
 
     print("ANCESTORS of ", end=str())
     print(lookup[root].pretty(ischild=False))
@@ -256,7 +281,7 @@ if __name__ == "__main__":
     parser.add_argument("pre", nargs="?", type=str)
     parser.add_argument("post", nargs="?", type=str)
     parser.add_argument("-e", "--extra", nargs="?", type=str)
-    parser.add_argument("-n", "--steps", nargs="?", type=int)
+    parser.add_argument("-n", "--steps", nargs="?", default=20, type=int)
     args = parser.parse_args()
 
     main(args)
