@@ -9,7 +9,7 @@ Pronounced "genie". Scrape parent-child relationships from Wikipedia infoboxes.
     - [Positional Arguments](#positional-arguments)
     - [Named Arguments](#named-arguments)
   - [Example Output](#example-output)
-  - [See Also](#see-also)
+  - [Other Motivating Examples](#other-motivating-examples)
   - [License](#license)
 
 ## Why Infoboxes?
@@ -99,14 +99,22 @@ DESCENDANTS of George Washington
     └── Eleanor Parke Custis Lewis
 ```
 
-## See Also
+## Other Motivating Examples
 
-Try out these other searches!
+Try out these other searches! Genea is intended to be general, meaning that any
+infobox labels you find can define the relationships between pages.
 
 ```bash
+# how many cars succeeded the Ford Quadricycle?
 python genea.py "Ford Quadricycle" "^Predecessor" "^Successor"
+
+# what is the pedigree of Secretariat? (goes back to the 1700s!)
 python genea.py "Secretariat (horse)" "^(Sire|Dam)$" --extra "sire"
+
+# where did Windows XP come from, where did it go?
 python genea.py "Windows XP" "^(Preceded by)$" "^(Succeeded by)$"
+
+# how many child companies does Disney have?
 python genea.py "Disney" "Parent" "(Divisions|Subsidiaries)"
 ```
 
