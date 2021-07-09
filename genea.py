@@ -38,6 +38,13 @@ class Symbols:
     TURN = "└"
 
 
+# FUNCTIONS (HELPER)
+
+
+def url_suffix(x):
+    return x.split("/")[-1]
+
+
 # CLASSES
 
 
@@ -47,7 +54,7 @@ class Node:
         if "name" in data:
             self.name = data["name"]
         else:
-            self.name = data["url"].split("/")[-1]
+            self.name = url_suffix(data["url"])
         self.thumb = data["thumb"] if "thumb" in data else None
 
         self.parents = dict()
@@ -212,7 +219,7 @@ def walk_relations(term, pre, post, extra, steps):
             urls |= functools.reduce(set.union, dct["relation"].values())
         new = urls - seen
 
-    print(f"Done checking {len(urls)} links.".ljust(30), end="\n\n")
+    print(f"Done checking {len(urls)} links.".ljust(30))
     return (url, data)
 
 
@@ -257,13 +264,17 @@ def main(args):
             if connected_components(parent, me, keys):
                 lookup[parent].children[me] = lookup[me]
                 lookup[me].parents[parent] = lookup[parent]
+            else:
+                print("NOT JOINED:", url_suffix(parent), "->", url_suffix(me))
 
         for child in dct["relation"]["post"]:
             if connected_components(me, child, keys):
                 lookup[me].children[child] = lookup[child]
                 lookup[child].parents[me] = lookup[me]
+            else:
+                print("NOT JOINED:", url_suffix(me), "->", url_suffix(child))
 
-    print("ANCESTORS of ", end=str())
+    print("\nANCESTORS of ", end=str())
     print(lookup[root].pretty(ischild=False))
     
     print("DESCENDANTS of ", end=str())
