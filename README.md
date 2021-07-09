@@ -89,6 +89,17 @@ DESCENDANTS of George Washington
     └── Eleanor Parke Custis Lewis
 ```
 
+## See Also
+
+Try out these other searches!
+
+```bash
+python genea.py "Ford Quadricycle" "^Predecessor" "^Successor"
+python genea.py "Secretariat (horse)" "^(Sire|Dam)$" --extra "sire"
+python genea.py "Windows XP" "^(Preceded by)$" "^(Succeeded by)$"
+python genea.py "Disney" "Parent" "(Divisions|Subsidiaries)"
+```
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
