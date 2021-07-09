@@ -259,6 +259,4 @@ if __name__ == "__main__":
     parser.add_argument("-n", "--steps", nargs="?", type=int)
     args = parser.parse_args()
 
-    print(args)
-
     main(args)
