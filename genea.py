@@ -261,6 +261,7 @@ def main(args):
         lookup[dct["url"]] = Node(dct)
 
     keys = {k: k for k in keys}
+
     for dct in data:
         me = dct["url"]
         for parent in dct["relation"]["pre"]:
