@@ -8,8 +8,8 @@ Pronounced "genie". Scrape parent-child relationships from Wikipedia infoboxes.
   - [Getting Started](#getting-started)
     - [Positional Arguments](#positional-arguments)
     - [Named Arguments](#named-arguments)
-  - [Example Output](#example-output)
-  - [Other Motivating Examples](#other-motivating-examples)
+  - [Text Output](#text-output)
+  - [Motivating Examples](#motivating-examples)
   - [License](#license)
 
 ## Why Infoboxes?
@@ -69,7 +69,7 @@ python genea.py "George Washington" "^Parent" "^Child"
 - `-n [STEPS]` : How many steps to walk from initial page?
 - `-e [EXTRA]` : (regex) If matched, will add additional links (no relation).
 
-## Example Output
+## Text Output
 
 ```txt
 ANCESTORS of George Washington
@@ -99,7 +99,7 @@ DESCENDANTS of George Washington
     └── Eleanor Parke Custis Lewis
 ```
 
-## Other Motivating Examples
+## Motivating Examples
 
 Try out these other searches! Genea is intended to be general, meaning that any
 infobox labels you find can define the relationships between pages.
