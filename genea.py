@@ -156,7 +156,7 @@ def parse_infobox(resp, pre, post, extra):
     return dct
 
 
-def walk_relations(term, pre, post, extra, ncyc):
+def walk_relations(term, pre, post, extra, steps):
     url = get_resp(URL_WIKI_SEARCH + term).url
     urls = {url}
 
@@ -164,8 +164,11 @@ def walk_relations(term, pre, post, extra, ncyc):
     data = tuple()
 
     new = urls - seen
-    while new and (ncyc > 0):
-        ncyc -= 1
+    if not steps:
+        steps = float("inf")
+
+    while new and (steps > 0):
+        steps -= 1
         seen |= urls
         
         print(f"Checking {len(new)} links...".ljust(30), end="\r")
@@ -188,11 +191,14 @@ def walk_relations(term, pre, post, extra, ncyc):
 
 
 def main(args):
-    pre = re.compile(args.pre) if args.pre else None
-    post = re.compile(args.post) if args.post else None
-    extra = re.compile(args.extra) if args.extra else None
+    for attr in ("pre", "post", "extra"):
+        x = getattr(args, attr)
+        if x:
+            setattr(args, attr, re.compile(x))
 
-    root, data = walk_relations(args.term, pre, post, extra, args.n)
+    root, data = walk_relations(
+        args.term, args.pre, args.post, args.extra, args.steps
+    )
 
     canon = dict()
     for dct in data:
@@ -247,10 +253,12 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser()
     parser.add_argument("term", type=str)
-    parser.add_argument("pre", nargs="?", default=str(), type=str)
-    parser.add_argument("post", nargs="?", default=str(), type=str)
-    parser.add_argument("extra", nargs="?", default=str(), type=str)
-    parser.add_argument("-n", nargs="?", default=20, type=int)
+    parser.add_argument("pre", nargs="?", type=str)
+    parser.add_argument("post", nargs="?", type=str)
+    parser.add_argument("-e", "--extra", nargs="?", type=str)
+    parser.add_argument("-n", "--steps", nargs="?", type=int)
     args = parser.parse_args()
+
+    print(args)
 
     main(args)
