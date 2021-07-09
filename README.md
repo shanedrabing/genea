@@ -2,6 +2,16 @@
 
 Pronounced "genie". Scrape parent-child relationships from Wikipedia infoboxes.
 
+- [Genea](#genea)
+  - [Why Infoboxes?](#why-infoboxes)
+  - [Installation](#installation)
+  - [Getting Started](#getting-started)
+    - [Positional Arguments](#positional-arguments)
+    - [Named Arguments](#named-arguments)
+  - [Example Output](#example-output)
+  - [See Also](#see-also)
+  - [License](#license)
+
 ## Why Infoboxes?
 
 Infoboxes give us a digest of a particular Wikipedia page, in addition to the
