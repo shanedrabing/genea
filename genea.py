@@ -145,22 +145,26 @@ def parse_infobox(resp, pre, post, extra):
         "relation": {"pre": set(), "post": set(), "extra": set()}
     }
     
+    # early return (not OK)
     if resp.status_code != 200:
         return dct
-
     html = resp.content
-    head = bs4.BeautifulSoup(html, "lxml", parse_only=STRAIN_HEAD)
-    box = bs4.BeautifulSoup(html, "lxml", parse_only=STRAIN_INFOBOX)
 
+    # parse head
+    head = bs4.BeautifulSoup(html, "lxml", parse_only=STRAIN_HEAD)
     link = head.select_one("link[rel='canonical']")
+    title = head.select_one("title")
+    
     if link:
         dct["canonical"] = link["href"]
+    if title:
+        dct["name"] = title.text.replace(" - Wikipedia", str())
+
+    #parse box
+    box = bs4.BeautifulSoup(html, "lxml", parse_only=STRAIN_INFOBOX)
     if not box:
         return dct
 
-    th = box.select_one("th")
-    if th:
-        dct["name"] = th.text
     img = box.select_one("img")
     if img:
         dct["thumb"] = img["src"]
@@ -264,14 +268,14 @@ def main(args):
             if connected_components(parent, me, keys):
                 lookup[parent].children[me] = lookup[me]
                 lookup[me].parents[parent] = lookup[parent]
-            else:
+            elif args.verbose:
                 print("NOT JOINED:", url_suffix(parent), "->", url_suffix(me))
 
         for child in dct["relation"]["post"]:
             if connected_components(me, child, keys):
                 lookup[me].children[child] = lookup[child]
                 lookup[child].parents[me] = lookup[me]
-            else:
+            elif args.verbose:
                 print("NOT JOINED:", url_suffix(me), "->", url_suffix(child))
 
     print("\nANCESTORS of ", end=str())
@@ -293,6 +297,7 @@ if __name__ == "__main__":
     parser.add_argument("post", nargs="?", type=str)
     parser.add_argument("-e", "--extra", nargs="?", type=str)
     parser.add_argument("-n", "--steps", nargs="?", default=20, type=int)
+    parser.add_argument("-v", "--verbose", default=False, action="store_true")
     args = parser.parse_args()
 
     main(args)
