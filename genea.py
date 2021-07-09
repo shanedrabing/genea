@@ -133,7 +133,7 @@ def is_wiki_href(url):
 
 
 def make_wiki_url(href):
-    return "https://en.wikipedia.org" + href
+    return "https://en.wikipedia.org" + href.split("#")[0]
 
 
 def parse_infobox(resp, pre, post, extra):
